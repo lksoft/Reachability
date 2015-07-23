@@ -71,7 +71,7 @@ static NSString *reachabilityFlags(SCNetworkReachabilityFlags flags)
 static void TMReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkReachabilityFlags flags, void* info) 
 {
 #pragma unused (target)
-#if __has_feature(obj_arc)
+#if __has_feature(objc_arc)
 	Reachability *reachability = ((__bridge Reachability*)info);
 #else
 	Reachability *reachability = ((Reachability*)info);
@@ -105,6 +105,7 @@ static void TMReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkRea
     if (ref) 
     {
         id reachability = [[self alloc] initWithReachabilityRef:ref];
+        
 
 #if __has_feature(objc_arc)
         return reachability;
@@ -217,7 +218,7 @@ static void TMReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkRea
     }
     
     
-#if __has_feature(obj_arc)
+#if __has_feature(objc_arc)
     context.info = (__bridge void *)self;
 #else
     context.info = (void *)self;
