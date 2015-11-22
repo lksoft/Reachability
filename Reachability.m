@@ -105,7 +105,7 @@ static void TMReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkRea
     if (ref) 
     {
         id reachability = [[self alloc] initWithReachabilityRef:ref];
-        
+		CFRelease(ref);
 
 #if __has_feature(objc_arc)
         return reachability;
@@ -124,7 +124,8 @@ static void TMReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkRea
     if (ref) 
     {
         id reachability = [[self alloc] initWithReachabilityRef:ref];
-        
+		CFRelease(ref);
+		
 #if __has_feature(objc_arc)
         return reachability;
 #else
@@ -211,7 +212,7 @@ static void TMReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkRea
 
     // first we need to create a serial queue
     // we allocate this once for the lifetime of the notifier
-    self.reachabilitySerialQueue = dispatch_queue_create("com.tonymillion.reachability", NULL);
+	self.reachabilitySerialQueue = dispatch_queue_create("com.tonymillion.reachability", NULL);
     if(!self.reachabilitySerialQueue)
     {
         return NO;
