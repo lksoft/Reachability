@@ -105,7 +105,6 @@ static void TMReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkRea
     if (ref) 
     {
         id reachability = [[self alloc] initWithReachabilityRef:ref];
-		CFRelease(ref);
 
 #if __has_feature(objc_arc)
         return reachability;
@@ -124,7 +123,6 @@ static void TMReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkRea
     if (ref) 
     {
         id reachability = [[self alloc] initWithReachabilityRef:ref];
-		CFRelease(ref);
 		
 #if __has_feature(objc_arc)
         return reachability;
