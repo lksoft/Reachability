@@ -105,7 +105,7 @@ static void TMReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkRea
     if (ref) 
     {
         id reachability = [[self alloc] initWithReachabilityRef:ref];
-
+		CFRelease(ref);
 #if __has_feature(objc_arc)
         return reachability;
 #else
@@ -123,7 +123,7 @@ static void TMReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkRea
     if (ref) 
     {
         id reachability = [[self alloc] initWithReachabilityRef:ref];
-		
+		CFRelease(ref);
 #if __has_feature(objc_arc)
         return reachability;
 #else
@@ -165,7 +165,7 @@ static void TMReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkRea
     if (self != nil) 
     {
         self.reachableOnWWAN = YES;
-        self.reachabilityRef = ref;
+        self.reachabilityRef = CFRetain(ref);
     }
     
     return self;    
